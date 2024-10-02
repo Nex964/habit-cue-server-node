@@ -11,7 +11,7 @@ const create = async (req, res) => {
     
     Object.keys(item).forEach(key => {
       if(key === "id"){
-        newTask[]
+        newTask.localId = item.id
       }
       newTask[key] = item[key];
     })
@@ -28,7 +28,7 @@ const create = async (req, res) => {
     }
   }
   
-  res.send(resData.map(item => item.id));
+  res.send(resData.map(item => item.localId));
   
 };
 
