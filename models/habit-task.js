@@ -3,6 +3,7 @@ var Schema = mongoose.Schema;
 
 var HabitTask = new Schema(
 	{
+    localId: String,
 		title: String,
 		note: String,
 		author: String,

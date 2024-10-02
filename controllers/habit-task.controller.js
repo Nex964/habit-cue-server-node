@@ -2,29 +2,33 @@ const TaskModel = require("../models/habit-task");
 
 const create = async (req, res) => {
   
-  req.body.tasks.forEach(item => {
+  const resData = [];
+  
+  for(let item in req.body.tasks){
+    
     console.log("Adding", item.title)
     const newTask = new TaskModel();
     
     Object.keys(item).forEach(key => {
+      if(key === "id"){
+        newTask[]
+      }
       newTask[key] = item[key];
     })
     
-    console.log("New", item.title)
-    
     newTask.createdBy = "YoloPolo";
     
-    newTask.save(function (err, book) {
-      if (err) {
-        res.send("error saving new habit task");
-      } else {
-        console.log(book);
-        res.send(book);
-      }
-    });
-  })
-
-
+    console.log("New Task", newTask);
+    
+    const addedItem = await newTask.save();
+    if (addedItem.err) {
+      res.send("error saving new habit task");
+    } else {
+      resData.push(addedItem)
+    }
+  }
+  
+  res.send(resData.map(item => item.id));
   
 };
 
