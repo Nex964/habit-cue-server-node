@@ -4,15 +4,21 @@ var Schema = mongoose.Schema;
 var HabitTask = new Schema(
 	{
 		title: String,
-		description: String,
+		note: String,
 		author: String,
 		assignedTo: String,
-		parentNode: String,
-		childNodes: [String],
+		parent: String,
+		childs: [String],
 		category: [String],
 		type: String,
 		tags: [String],
+    extraData: {
+      count: Number,
+      unit: String
+    },
     isCompleted: Boolean,
+    createdAt: String,
+    createdBy: String
 	},
 	{ timestamps: true },
 );
