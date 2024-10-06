@@ -6,7 +6,6 @@ const create = async (req, res) => {
   
   for(let item in req.body.tasks){
     
-    console.log("Adding", item.title)
     const newTask = new TaskModel();
     
     Object.keys(item).forEach(key => {
@@ -17,8 +16,6 @@ const create = async (req, res) => {
     })
     
     newTask.createdBy = "YoloPolo";
-    
-    console.log("New Task", newTask);
     
     const addedItem = await newTask.save();
     if (addedItem.err) {
