@@ -4,7 +4,7 @@ const create = async (req, res) => {
   
   const resData = [];
   
-  for(let item in req.body.tasks){
+  for(let item of req.body.tasks){
     
     const newTask = new TaskModel();
     
