@@ -8,9 +8,11 @@ const create = async (req, res) => {
     
     item.createdBy = "yp";
     item._id = item.id;
-    delete item._id;
     
-    const addedItem = await TaskModel.findOneAndUpdate({ _id: item._id }, {item}, { upsert: true, new: true, setDefaultsOnInsert: true });
+    delete item.id;
+    item.syncStatus = 1;
+    
+    const addedItem = await TaskModel.findOneAndUpdate({ _id: item._id }, {...item}, { upsert: true, new: true, setDefaultsOnInsert: true });
     
     // const addedItem = await newTask.save();
     if (addedItem.err) {
@@ -20,7 +22,7 @@ const create = async (req, res) => {
     }
   }
   
-  res.send(resData.map(item => item._id));
+  res.send(resData.map(uploadedItem => uploadedItem._id));
   
 };
 
