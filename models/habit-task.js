@@ -3,7 +3,7 @@ var Schema = mongoose.Schema;
 
 var HabitTask = new Schema(
 	{
-    localId: String,
+    _id: String,
 		title: String,
 		note: String,
 		author: String,
@@ -21,8 +21,7 @@ var HabitTask = new Schema(
     createdAt: String,
     createdBy: String
 	},
-	{ timestamps: true },
+	{ timestamps: true, _id: false },
 );
-// /BeforeDate/AfterDate/InBetween of dates/name&desc
 
 module.exports = mongoose.model("HabitTask", HabitTask);

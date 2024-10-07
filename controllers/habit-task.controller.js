@@ -6,18 +6,13 @@ const create = async (req, res) => {
   
   for(let item of req.body.tasks){
     
-    const newTask = new TaskModel();
+    item.createdBy = "yp";
+    item._id = item.id;
+    delete item._id;
     
-    Object.keys(item).forEach(key => {
-      if(key === "id"){
-        newTask.localId = item.id
-      }
-      newTask[key] = item[key];
-    })
+    const addedItem = await TaskModel.findOneAndUpdate({ _id: item._id }, {item}, { upsert: true, new: true, setDefaultsOnInsert: true });
     
-    newTask.createdBy = "YoloPolo";
-    
-    const addedItem = await newTask.save();
+    // const addedItem = await newTask.save();
     if (addedItem.err) {
       res.send("error saving new habit task");
     } else {
@@ -25,7 +20,7 @@ const create = async (req, res) => {
     }
   }
   
-  res.send(resData.map(item => item.localId));
+  res.send(resData.map(item => item._id));
   
 };
 
