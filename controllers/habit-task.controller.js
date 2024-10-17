@@ -6,7 +6,9 @@ const create = async (req, res) => {
   
   for(let item of req.body.tasks){
     
-    item.createdBy = "yp";
+    if(item.createdBy === undefined){
+      item.createdBy = "yp"; 
+    }
     item._id = item.id;
     
     delete item.id;
