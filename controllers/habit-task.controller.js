@@ -39,4 +39,26 @@ const get = async (req, res) => {
   });
 };
 
-module.exports = { create, get };
+
+const deleteTasksByUserId = async (req, res) => {
+  try {
+    const { userId } = req.params;
+
+    if (!userId) {
+      return res.status(400).send({ error: "userId is required" });
+    }
+
+    const result = await TaskModel.deleteMany({ createdBy: userId });
+
+    if (result.deletedCount === 0) {
+      return res.status(404).send({ message: "No tasks found for the given userId" });
+    }
+
+    res.status(200).send({ message: `Successfully deleted ${result.deletedCount} tasks for userId: ${userId}` });
+  } catch (error) {
+    console.error("Error in deleteTasksByUserId:", error);
+    res.status(500).send({ error: "An internal error occurred" });
+  }
+};
+
+module.exports = { create, get, deleteTasksByUserId };
