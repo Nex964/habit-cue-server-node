@@ -2,9 +2,15 @@ const UserModel = require("../models/user");
 
 const create = async (req, res) => {
   
-  const 
+  const userId = req.body.userId;
   
-  const addedItem = await UserModel.findOneAndUpdate({ _id: item._id }, {...item}, { upsert: true, new: true, setDefaultsOnInsert: true });
+  const userData = {
+    userId
+  };
+  
+  const resData = {};
+  
+  const addedItem = await UserModel.findOneAndUpdate({ userId: userId }, {userId}, { upsert: true, new: true, setDefaultsOnInsert: true });
     
   // const addedItem = await newTask.save();
   if (addedItem.err) {
