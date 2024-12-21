@@ -1,6 +1,6 @@
 var express = require("express");
 var router = express.Router();
-let controller = require("../controllers/habit-task.controller");
+let controller = require("../controllers/user.controller");
 
 
 router.get("/", controller.get);
