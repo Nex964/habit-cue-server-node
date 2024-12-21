@@ -17,8 +17,10 @@ app.use(
     }),
 );
 
+
 // app.use("/books", books);
 app.use("/habit-task", habitTasks);
+app.use("/user", habitTasks);
 
 app.get("/", function (req, res) {
     console.log("app starting on port: " + port);
